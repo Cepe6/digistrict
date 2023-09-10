@@ -1,0 +1,17 @@
+server:
+  port: 8000
+  
+jwt:
+  secret_key: something-something
+  refresh_token_validity_min: 10080 #a week should be enough, no?
+  access_token_validity_min: 1
+
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/digistrict?currentSchema=digistrict_security
+    username: digistrict_security_user
+    password: A6&!Eb+9Gt
+  liquibase:
+    change-log: classpath:db/changelog.xml

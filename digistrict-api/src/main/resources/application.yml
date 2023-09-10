@@ -1,0 +1,17 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /digistrict-api
+  
+spring:
+  application:
+    name: digistrict-api-service
+    
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config

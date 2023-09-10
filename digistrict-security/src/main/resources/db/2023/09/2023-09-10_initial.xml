@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+	<changeSet author="v.mladenov" id="2023-09-10_initial">
+		<createTable tableName="users">
+			<column name="id" autoIncrement="true" type="int"/>
+			<column name="email" type="varchar(255)"/>
+			<column name="password" type="varchar(255)"/>
+			<column name="active" type="boolean"/>
+		</createTable>
+		
+		<addPrimaryKey columnNames="id" tableName="users"/>
+		
+		<createTable tableName="refresh_tokens">
+			<column name="user_id" type="int"/>
+			<column name="token" type="varchar(255)"/>
+			<column name="expire_time" type="datetime(6)"/>
+		</createTable>
+		
+		<addPrimaryKey columnNames="user_id" tableName="refresh_tokens"/>
+		<addForeignKeyConstraint constraintName="fk_refresh_tokens_user_id" 
+				referencedTableName="users"  referencedColumnNames="id"
+				baseTableName="refresh_tokens" baseColumnNames="user_id"/>
+	</changeSet>
+	
+</databaseChangeLog>
